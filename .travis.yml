@@ -40,6 +40,13 @@ after_failure:
   - tail burp-*/_build/sub/test-suite.log
   - sleep 2
 
+build_deb_package:
+  provider: script
+  before_script:
+    - .travis/install-debian-packaging.sh
+  script:
+    - .travis/build-deb.sh
+
 deploy:
   provider: script
   script: test/travis-deploy.sh
